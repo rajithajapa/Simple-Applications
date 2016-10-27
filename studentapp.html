@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/ui-darkness/jquery-ui.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"> 
+</script>
+<script>
+
+function addStudent(){
+ var input = $("#name").val();
+ var datepickerBegin = $("#datepicker_start").val();
+ var datepickerEnd = $("#datepicker_end").val();
+
+ if(input==""){
+	   alert("No name entered  !!!!!");
+	}
+
+	else{
+	   var node = "<li>"+ $("#name").val() + " , " + datepickerBegin +  "</li>" ;
+        $("ol").append(node);
+
+	    $("#name").val("");
+		$("#datepicker_start").val("");
+		$("#datepicker_end").val("");
+     }		
+}
+
+function removeAll(){
+   $("ol").children().remove();
+}
+
+function removeLast(){
+   $("ol").children().last().remove();
+}
+function showBlock(){
+ $("#addBlock").slideDown();
+}
+function hideBlock(){	
+ $("#addBlock").slideUp();
+}
+
+$(document).ready(function(){
+   
+  $("#btn").click(addStudent);
+  $("#btnRemoveAll").click(removeAll);
+   $("#btnRemove").click(removeLast);
+  $("#datepicker_start").datepicker();
+  $("#datepicker_end").datepicker();
+});
+</script>
+</head>
+<body>
+<h1 align="center">Add Student Example</h2>
+<br><br>
+<h3>List of Students</h3>
+<table width ="50%" style="float:right">
+    <tr>
+	<td>
+	<div id="add">
+		</div>
+		<p>Add more..</p>
+		<div id="addBlock">
+			<p>Name:   <input id="name" align="right"></input></p>
+			<p>Start Date: <input type="text" id="datepicker_start" align="right"></p>
+			<p>End Date: <input type="text" id="datepicker_end" align="right"></p>
+			<button id="btn">Add Student</button>
+		</div>
+
+	</td>
+	</tr>
+</table>
+<ol>
+   <li>John Smith , 11/04/2013 </li>
+   <li>Mike Sullivan , 11/04/2013</li>
+   <li>Raj Kumar , 11/04/2013 </li>
+</ol>
+<button id="btnRemove">Delete Last</button><br><br>
+<button id="btnRemoveAll">Clear List</button><br>
+</body>
+</html>
